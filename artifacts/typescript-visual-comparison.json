@@ -1,0 +1,83 @@
+[
+  {
+    "name": "login-reference.png",
+    "width": 1536,
+    "height": 1024,
+    "changedPixels": 4042,
+    "bounds": {
+      "minX": 446,
+      "minY": 90,
+      "maxX": 698,
+      "maxY": 155
+    }
+  },
+  {
+    "name": "login-desktop.png",
+    "width": 1440,
+    "height": 900,
+    "changedPixels": 3233,
+    "bounds": {
+      "minX": 412,
+      "minY": 90,
+      "maxX": 662,
+      "maxY": 155
+    }
+  },
+  {
+    "name": "login-user-desktop.png",
+    "width": 1920,
+    "height": 954,
+    "changedPixels": 3559,
+    "bounds": {
+      "minX": 643,
+      "minY": 90,
+      "maxX": 895,
+      "maxY": 155
+    }
+  },
+  {
+    "name": "login-tablet.png",
+    "width": 1024,
+    "height": 768,
+    "changedPixels": 0,
+    "bounds": null
+  },
+  {
+    "name": "login-mobile.png",
+    "width": 375,
+    "height": 812,
+    "changedPixels": 0,
+    "bounds": null
+  },
+  {
+    "name": "login-desktop-zoom-80.png",
+    "width": 1920,
+    "height": 954,
+    "changedPixels": 2653,
+    "bounds": {
+      "minX": 894,
+      "minY": 72,
+      "maxX": 1095,
+      "maxY": 124
+    }
+  },
+  {
+    "name": "login-desktop-zoom-200.png",
+    "width": 1920,
+    "height": 954,
+    "changedPixels": 229,
+    "bounds": {
+      "minX": 440,
+      "minY": 210,
+      "maxX": 828,
+      "maxY": 267
+    }
+  },
+  {
+    "name": "login-mobile-zoom-200.png",
+    "width": 376,
+    "height": 812,
+    "changedPixels": 0,
+    "bounds": null
+  }
+]

@@ -1,0 +1,61 @@
+{
+  "scope": "Isolated SSR loading layout from actual AdminDashboardContent; no authentication or successful API responses simulated.",
+  "cases": [
+    {
+      "width": 1672,
+      "height": 940,
+      "documentWidth": 1672,
+      "documentHeight": 940,
+      "stats": 5,
+      "panels": 3
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "documentWidth": 1920,
+      "documentHeight": 1080,
+      "stats": 5,
+      "panels": 3
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "documentWidth": 1366,
+      "documentHeight": 768,
+      "stats": 5,
+      "panels": 3
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "documentWidth": 1009,
+      "documentHeight": 1080,
+      "stats": 5,
+      "panels": 3
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "documentWidth": 753,
+      "documentHeight": 1671,
+      "stats": 5,
+      "panels": 3
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "documentWidth": 360,
+      "documentHeight": 1910,
+      "stats": 5,
+      "panels": 3
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "documentWidth": 305,
+      "documentHeight": 2221,
+      "stats": 5,
+      "panels": 3
+    }
+  ]
+}

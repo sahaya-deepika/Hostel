@@ -1,0 +1,40 @@
+{
+  "name": "hosteluser",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --hostname localhost --port 3000",
+    "build": "next build",
+    "lint": "eslint .",
+    "preview": "npm run start",
+    "test": "node --test scripts/contract.test.mjs scripts/modules.test.mjs scripts/dashboard.test.mjs scripts/session.test.mjs",
+    "verify:api": "node scripts/verify-api.mjs",
+    "test:login-ui": "node scripts/login-browser-qa.mjs",
+    "start": "next start --hostname localhost --port 3000",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@tanstack/react-query": "^5.104.5",
+    "axios": "^1.20.0",
+    "echarts": "^6.1.0",
+    "lucide-react": "^1.60.0",
+    "next": "^16.4.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^10.13.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.13.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.0"
+  }
+}

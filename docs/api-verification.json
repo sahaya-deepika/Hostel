@@ -1,0 +1,128 @@
+{
+  "preflight": {
+    "path": "/auth/login",
+    "httpStatus": 204,
+    "allowOrigin": "http://localhost:3000",
+    "allowMethods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "allowHeaders": "content-type"
+  },
+  "checkedAt": "2026-10-21T11:33:18.618Z",
+  "baseURL": "https://api.ourhostel.in/api/v1",
+  "scope": "Unauthenticated connectivity and validation only. No valid credentials supplied; protected successful reads and mutations NOT verified.",
+  "results": [
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "httpStatus": 422,
+      "allowOrigin": "http://localhost:3000",
+      "body": {
+        "status": "failure",
+        "message": "Invalid request",
+        "data": null,
+        "errors": {
+          "email": "Invalid input: expected string, received undefined",
+          "password": "Invalid input: expected string, received undefined"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/students/setup_new_password",
+      "httpStatus": 422,
+      "allowOrigin": "http://localhost:3000",
+      "body": {
+        "status": "failure",
+        "message": "Invalid request",
+        "data": null,
+        "errors": {
+          "token": "Invalid input: expected string, received undefined",
+          "newPassword": "Invalid input: expected string, received undefined"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/students/home",
+      "httpStatus": 400,
+      "allowOrigin": "http://localhost:3000",
+      "body": {
+        "status": "failure",
+        "message": "Auth header is needed",
+        "data": null,
+        "errors": "Missing auth header"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/attendance_records",
+      "httpStatus": 400,
+      "allowOrigin": "http://localhost:3000",
+      "body": {
+        "status": "failure",
+        "message": "Auth header is needed",
+        "data": null,
+        "errors": "Missing auth header"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/students",
+      "httpStatus": 400,
+      "allowOrigin": "http://localhost:3000",
+      "body": {
+        "status": "failure",
+        "message": "Auth header is needed",
+        "data": null,
+        "errors": "Missing auth header"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/students/departments",
+      "httpStatus": 400,
+      "allowOrigin": "http://localhost:3000",
+      "body": {
+        "status": "failure",
+        "message": "Auth header is needed",
+        "data": null,
+        "errors": "Missing auth header"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/rooms",
+      "httpStatus": 400,
+      "allowOrigin": "http://localhost:3000",
+      "body": {
+        "status": "failure",
+        "message": "Auth header is needed",
+        "data": null,
+        "errors": "Missing auth header"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/leave_applications",
+      "httpStatus": 400,
+      "allowOrigin": "http://localhost:3000",
+      "body": {
+        "status": "failure",
+        "message": "Auth header is needed",
+        "data": null,
+        "errors": "Missing auth header"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/upcoming_events",
+      "httpStatus": 400,
+      "allowOrigin": "http://localhost:3000",
+      "body": {
+        "status": "failure",
+        "message": "Auth header is needed",
+        "data": null,
+        "errors": "Missing auth header"
+      }
+    }
+  ]
+}

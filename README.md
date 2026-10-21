@@ -1,6 +1,6 @@
 ﻿# OurHostel frontend
 
-Next.js 16 App Router application migrated in the existing workspace. Uses React, Tailwind CSS with PostCSS, Axios, and Lucide React. Vite and React Router have been removed.
+Next.js 16 App Router application migrated in the existing workspace. Uses React, strict TypeScript, Tailwind CSS v4 with PostCSS, Axios, and Lucide React. Vite and React Router have been removed.
 
 ## Run
 
@@ -9,6 +9,8 @@ npm install
 npm run dev
 npm run build
 npm run start
+npm run typecheck
+npm run lint
 npm test
 npm run verify:api
 ```
@@ -27,22 +29,22 @@ Development: `npm run dev`. Production: `npm run build` then `npm run start`. Bo
 
 The user-supplied file was available as `C:/Users/admin/Downloads/frontend-api-simple.txt` (the request calls it `frontend-api-simple(2).txt`). Its full contents are preserved in `docs/api-source.txt`. That document is the only backend contract used.
 
-- `src/views/auth/`: separate Login and SetNewPassword pages.
-- `src/views/admin/`: dashboard, students, rooms, attendance, leaves and events; create/detail/edit pages use the same documented APIs.
-- `src/views/student/`: dashboard, attendance, leave apply/session-list/detail/edit/cancel, event list/detail.
-- `src/layouts/`: AuthLayout, AdminLayout, StudentLayout and shared WorkspaceLayout preserve the existing interface.
+- `src/common/pages/auth/`: separate Login and SetNewPassword pages.
+- `src/admin/pages/`: dashboard, students, rooms, attendance, leaves and events; create/detail/edit pages use the same documented APIs.
+- `src/user/pages/`: dashboard, attendance, leave apply/session-list/detail/edit/cancel, event list/detail.
+- `src/common/layouts/`: AuthLayout and shared WorkspaceLayout preserve the existing interface.
 - `src/app/`: native file-based routes, root providers, public screens, and protected role layouts. Dynamic IDs use `[id]` folders.
-- `src/routes/routeConfig.js`: 16 admin page routes and seven student page routes.
-- `src/components/common/`: Button, Input, Loader, ProtectedRoute and shared dashboard/event views.
-- `src/components/admin/`, `src/components/student/`: reusable role-specific forms and backend limitation notices.
-- `src/services/`: centralized Axios client and separate authService, studentService, attendanceService, roomService, leaveService, eventService. Endpoint definitions stay in services.
-- `src/services/contract.js`: all 24 implemented operations with their allowed roles, payload fields and query parameters.
-- `src/utils/`: authentication context, session utilities, request lifecycle, dates and actual leave-response session storage.
-- `src/app/layout.jsx` and `providers.jsx`: global styles, metadata, Suspense and hydration-safe authentication.
-- `src/utils/navigation.jsx`: thin components/hooks backed by `next/link` and `next/navigation`; no second router.
+- `src/common/routes/routeConfig.ts`: 16 admin page routes and seven student page routes.
+- `src/common/components/`: Button, Input, Loader, ProtectedRoute and shared event views. Student dashboard belongs to `src/user/components/`; admin dashboard and charts belong to `src/admin/components/`.
+- `src/admin/components/`, `src/user/components/`: reusable role-specific forms and backend limitation notices.
+- `src/common/services/`: centralized Axios client, API contract, authentication and shared event reads; role-specific services stay under admin/services and user/services. Endpoint definitions stay in services.
+- `src/common/services/contract.ts`: all 24 implemented operations with their allowed roles, payload fields and query parameters.
+- `src/common/utils/`: authentication context, session utilities, request lifecycle, dates and actual leave-response session storage.
+- `src/app/layout.tsx` and `providers.tsx`: global styles, metadata, Suspense and hydration-safe authentication.
+- `src/common/utils/navigation.tsx`: thin components/hooks backed by `next/link` and `next/navigation`; no second router.
 - `docs/API-ANALYSIS.md`: complete API inventory. `docs/FOLDER-STRUCTURE.md`: current module structure and refactor notes.
 
-Unused compatibility files (`pages/Login.jsx`, `pages/Management.jsx`, `pages/AttendanceLeave.jsx`, `services/auth.js`) and unused Vite starter CSS/assets were removed after checking static and lazy imports. Canonical authentication screens live in `src/views/auth/`, exposed by `src/app/login/page.jsx` and `src/app/setup-password/page.jsx`. User-provided assets were excluded from the cleanup targets.
+Unused compatibility files (`pages/Login.tsx`, `pages/Management.tsx`, `pages/AttendanceLeave.tsx`, `services/auth.ts`) and unused Vite starter CSS/assets were removed after checking static and lazy imports. Canonical authentication screens live in `src/common/pages/auth/`, exposed by `src/app/login/page.tsx` and `src/app/setup-password/page.tsx`. User-provided assets were excluded from the cleanup targets.
 
 Base URL is fixed to `https://api.ourhostel.in/api/v1`. There is no alternate API, proxy, mocked response, or seeded application data. Authentication tokens and the returned user are stored in sessionStorage. Signing out clears authentication. The backend must enforce role and resource ownership independently of frontend checks.
 
@@ -88,7 +90,7 @@ Room creation may fail because of the documented hostel ID issue. Room list/deta
 
 ## Login UI with supplied assets
 
-The light-blue split-screen authentication UI uses the original `src/assets/login1.png` campus background and `login2.png` contained decoration. See [login implementation and QA notes](docs/LOGIN-UI.md) for the changed files, screenshots, four viewport checks, interaction tests, and live CORS result. Remember Me stores the email only; token handling remains session-based.
+The light-blue split-screen authentication UI uses the original `src/common/assets/login1.png` campus background and `login2.png` contained decoration. See [login implementation and QA notes](docs/LOGIN-UI.md) for the changed files, screenshots, four viewport checks, interaction tests, and live CORS result. Remember Me stores the email only; token handling remains session-based.
 
 Run `npm run test:login-ui` with Chrome installed and the dev server running on port 5173. The latest production build and ten module/contract checks pass. Actual browser interaction checks are recorded in `artifacts/login-qa.json`; successful authenticated login remains unverified.
 
@@ -99,3 +101,10 @@ Native routes preserve the existing URLs, 16 admin views, seven student views, r
 Production build, ESLint, 10 contract/server smoke tests, and 43 login viewport/zoom-equivalent cases pass. The browser suite checks protected-route redirects and the raw emailed setup token. Successful live login and authenticated API mutations still require valid user credentials; none were supplied or simulated. Older reports under docs describe the pre-migration implementation unless updated here.
 #   H o s t e l  
  
+## Admin folder organization
+
+All admin-only pages, components, layout, API services, styles, and chart utilities are centralized under **src/admin/**. Native Next.js route adapters remain under src/app/admin, preserving every URL. Shared authentication, API transport/contract, and the student workspace remain separate. Admin styles are loaded by the admin route layout. See docs/FOLDER-STRUCTURE.md for the complete tree.
+
+## User folder organization
+
+Student/user pages, components, layout, student-only services and leave-session utilities are centralized under **src/user/**. Native Next.js route adapters remain in src/app/student and preserve all /student URLs. Admin code remains in src/admin. Authentication, common UI, event reads and the API transport/contract remain shared. See docs/FOLDER-STRUCTURE.md.
