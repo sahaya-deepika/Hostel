@@ -44,9 +44,9 @@ test('server session endpoint rejects missing sessions, forged cookies, missing 
    assert.equal(new URL(direct.headers.get('location'),base).pathname,'/login')
   }
  }
- const crossOrigin=await fetch(base+'/api/auth/session',{method:'POST',headers:{Origin:'https://untrusted.example','Content-Type':'application/json'},body:'{}'})
+ const crossOrigin=await fetch(base+'/api/auth/login',{method:'POST',headers:{Origin:'https://untrusted.example','Content-Type':'application/json'},body:'{}'})
  assert.equal(crossOrigin.status,403)
- const empty=await fetch(base+'/api/auth/session',{method:'POST',headers:{Origin:base,'Content-Type':'application/json'},body:'{}'})
+ const empty=await fetch(base+'/api/auth/login',{method:'POST',headers:{Origin:base,'Content-Type':'application/json'},body:'{}'})
  assert.equal(empty.status,422)
  const logout=await fetch(base+'/api/auth/session',{method:'DELETE',headers:{Origin:base}})
  assert.equal(logout.status,200)

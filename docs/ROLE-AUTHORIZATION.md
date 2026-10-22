@@ -8,7 +8,7 @@ POST https://api.ourhostel.in/api/v1/auth/login returns data.user.role and data.
 
 ## Authorization flow
 
-1. The existing login form posts email/password to a new internal Next.js route, /api/auth/session. X-Login-Role expresses only the selected portal.
+1. The existing login form posts email/password to a new internal Next.js route, POST /api/auth/login. X-Login-Role expresses only the selected portal.
 2. That server route forwards exactly email/password to the existing backend /auth/login over HTTPS. Backend errors remain errors. Only a successful response with an active, supported user and nonempty token can establish a session. A mismatch with the selected portal is rejected before issuing the cookie.
 3. Next.js issues an HMAC-SHA256 signed HttpOnly, SameSite=Lax cookie with the backend-returned user and a SHA-256 digest of the token. The raw token is not stored in the cookie. HTTPS requests use Secure. The cookie expires after at most eight hours, or sooner if the backend token advertises an earlier exp. Decoding exp can only shorten this lifetime; decoded roles never grant access.
 4. src/proxy.ts verifies the cookie signature, payload and expiry for all /admin/:path* and /student/:path* requests, including direct URLs, nested routes and refreshes. No cookie or invalid cookie goes to /login. Student accessing admin goes to /student/dashboard; admin accessing student goes to /admin/dashboard.
@@ -57,6 +57,8 @@ The frontend repository cannot implement or certify these backend rules. No secr
 - src/common/server/session.ts
 - src/common/server/requireRole.ts
 - src/app/api/auth/session/route.ts
+- src/app/api/auth/login/route.ts
+- src/common/server/authHttp.ts
 - src/app/admin/layout.tsx
 - src/app/student/layout.tsx
 - src/admin/layouts/AdminLayout.tsx
